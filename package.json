@@ -1,0 +1,23 @@
+{
+  "name": "wordlealgorithm",
+  "version": "1.0.0",
+  "description": "Wordle Algorithms",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rasmus3liasson/WordleAlgorithm.git"
+  },
+  "author": "Rasmus Eliasson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rasmus3liasson/WordleAlgorithm/issues"
+  },
+  "homepage": "https://github.com/Rasmus3liasson/WordleAlgorithm#readme",
+  "dependencies": {
+    "jest": "^29.5.0"
+  }
+}
