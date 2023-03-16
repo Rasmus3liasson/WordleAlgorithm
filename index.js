@@ -2,12 +2,10 @@ function algorithmA(wordFromUser, correctWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let finalWord = correctWord.toUpperCase().split("");
 
-  let obj = {};
   let arr = [];
-  let duplicateLetters = {};
   let incorrectArr = [];
-  let wrongPlaceArr = [];
 
+  //function to get letters that dont match
   function notSameLetters() {
     let incorrect;
 
@@ -20,43 +18,47 @@ function algorithmA(wordFromUser, correctWord) {
 
     return incorrect;
   }
-
-  incorrectValues = notSameLetters();
-
-  //setting letters that dont match to incorrect
-  for (i = 0; i < incorrectValues.length; i++) {
-    obj[incorrectValues[i]] = "incorrect";
-  }
+  let incorrectValues = notSameLetters();
 
   for (let i = 0; i < guessWord.length; i++) {
     let newObj = {};
+
     newObj[guessWord[i]] = "correct";
     arr.push(newObj);
   }
 
+  //variables to see if arrays have more of same letters then the other
+  const containMoreOfSame1 = Math.max(
+    ...guessWord.map((x) => guessWord.filter((y) => y === x).length)
+  );
+  const containMoreOfSame2 = Math.max(
+    ...finalWord.map((x) => finalWord.filter((y) => y === x).length)
+  );
+
   arr.forEach((obj, index) => {
     const letter = Object.keys(obj)[0];
-
+    console.log(letter);
     if (incorrectValues.includes(letter)) {
       obj[letter] = "incorrect";
       return;
     }
-    if (guessWord[index] === finalWord[index]) {
-      return;
-    }
-    if (
-      finalWord.includes(letter) &&
-      finalWord.indexOf(letter) !== index &&
-      !duplicateLetters[letter]
-    ) {
+
+    if (finalWord.includes(letter) && finalWord.indexOf(letter) !== index) {
       obj[letter] = "misplaced";
-      duplicateLetters[letter] = "incorrect";
-    } else {
-      obj[letter] = "incorrect";
+      if (containMoreOfSame1 > containMoreOfSame2) {
+        obj[letter] = "incorrect";
+      } else {
+        obj[letter] = "misplaced";
+      }
+    } else if (
+      finalWord.includes(letter) &&
+      finalWord.indexOf(letter) == index
+    ) {
+      obj[letter] = "correct";
     }
   });
 
   console.log(arr);
 }
 
-algorithmA("Solln", "Solen");
+algorithmA("solen", "solen");
