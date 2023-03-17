@@ -1,6 +1,9 @@
-function algorithmA(wordFromUser, correctWord) {
+export function algorithmA(wordFromUser, correctWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let finalWord = correctWord.toUpperCase().split("");
+  if (guessWord.length != finalWord.length) {
+    return false;
+  }
 
   let arr = [];
   let incorrectArr = [];
@@ -37,9 +40,12 @@ function algorithmA(wordFromUser, correctWord) {
 
   arr.forEach((obj, index) => {
     const letter = Object.keys(obj)[0];
-    console.log(letter);
+
     if (incorrectValues.includes(letter)) {
       obj[letter] = "incorrect";
+      if (finalWord === guessWord) {
+        obj[letter] = "correct";
+      }
       return;
     }
 
@@ -57,8 +63,7 @@ function algorithmA(wordFromUser, correctWord) {
       obj[letter] = "correct";
     }
   });
-
   console.log(arr);
-}
 
-algorithmA("solen", "solen");
+  return arr;
+}
