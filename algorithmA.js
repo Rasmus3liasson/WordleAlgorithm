@@ -1,4 +1,4 @@
-function algorithmA(wordFromUser, correctWord) {
+export function algorithmA(wordFromUser, correctWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let finalWord = correctWord.toUpperCase().split("");
   if (guessWord.length != finalWord.length) {

@@ -1,8 +1,9 @@
-import { algorithmB } from "./algorithmB";
+import { algorithmB } from "../src/algorithmB.js";
 import { describe, expect, test, jest } from "@jest/globals";
 
 describe("algorithmB(category, lengthOfWord, includeDuplicatedLetters)", () => {
   const wordsArray = ["Rasmus", "Eliasson", "hej", "martin", "kola"];
+
   test("should return random word from array", () => {
     const result = algorithmB(wordsArray, 20);
     expect(wordsArray).toContain(result);
