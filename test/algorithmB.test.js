@@ -1,7 +1,7 @@
 import { algorithmB } from "../src/algorithmB.js";
 import { describe, expect, test, jest } from "@jest/globals";
 
-describe("algorithmB(category, lengthOfWord, includeDuplicatedLetters)", () => {
+describe("algorithmB(category, lengthOfWord, excludeDuplicatedLetters)", () => {
   const wordsArray = ["Rasmus", "Eliasson", "hej", "martin", "kola"];
 
   test("should return random word from array", () => {
@@ -14,7 +14,7 @@ describe("algorithmB(category, lengthOfWord, includeDuplicatedLetters)", () => {
     expect(result).toEqual("hej");
   });
 
-  test("should use parameter 'includeDuplicatedLetters' to exclude letters that contain letters more than once", () => {
+  test("should use parameter 'excludeDuplicatedLetters' to exclude letters that contain letters more than once", () => {
     const result = algorithmB(wordsArray, 20, "JA");
     expect(result).not.toContain("Eliasson");
   });

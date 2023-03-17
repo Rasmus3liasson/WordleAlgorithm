@@ -9,7 +9,7 @@ const workList =
 let wordsArr = [];
 let duplicatedLetter = [];
 
-export function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
+export function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   if (category == wordsArr) {
     wordsArr.push(...foodList);
     wordsArr.push(...colorList);
@@ -26,7 +26,7 @@ export function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
       }
     }
   }
-  if (includeDuplicatedLetters === "JA") {
+  if (excludeDuplicatedLetters === "JA") {
     removeDuplicatedLetters();
   }
 
