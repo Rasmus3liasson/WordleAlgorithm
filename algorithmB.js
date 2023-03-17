@@ -38,6 +38,10 @@ function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
 
   const randomWord =
     askedVauleArr[Math.floor(Math.random() * askedVauleArr.length)];
+
+  if (randomWord === undefined) {
+    console.error("Fanns tyvärr inget ord med dessa parametrar");
+  }
   console.log(randomWord);
 }
-algorithmB(wordsArr, 4, "JA");
+algorithmB(wordsArr, 2, "JA");
