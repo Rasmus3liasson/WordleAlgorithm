@@ -9,7 +9,7 @@ const workList =
 let wordsArr = [];
 let duplicatedLetter = [];
 
-function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
+export function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
   if (category == wordsArr) {
     wordsArr.push(...foodList);
     wordsArr.push(...colorList);
@@ -19,7 +19,7 @@ function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
   let askedVauleArr = [];
 
   function removeDuplicatedLetters() {
-    for (i = 0; i < category.length; i++) {
+    for (let i = 0; i < category.length; i++) {
       duplicatedLetter = new Set(category[i].toLowerCase());
       if (duplicatedLetter.length != category[i].length) {
         category.splice(i, 1);
@@ -42,6 +42,5 @@ function algorithmB(category, lengthOfWord, includeDuplicatedLetters) {
   if (randomWord === undefined) {
     console.error("Fanns tyvärr inget ord med dessa parametrar");
   }
-  console.log(randomWord);
+  return randomWord;
 }
-algorithmB(wordsArr, 2, "JA");
