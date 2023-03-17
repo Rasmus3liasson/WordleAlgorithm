@@ -1,11 +1,11 @@
-export function algorithmA(wordFromUser, correctWord) {
+function algorithmA(wordFromUser, correctWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let finalWord = correctWord.toUpperCase().split("");
   if (guessWord.length != finalWord.length) {
     return false;
   }
 
-  let arr = [];
+  let letterArr = [];
   let incorrectArr = [];
 
   //function to get letters that dont match
@@ -21,24 +21,37 @@ export function algorithmA(wordFromUser, correctWord) {
 
     return incorrect;
   }
-  let incorrectValues = notSameLetters();
+  const incorrectValues = notSameLetters();
 
+  //function to decide if guessWord has on more of a letter than in finalWord
+  function compareArrays(arr) {
+    let maxCount = 0;
+    for (let i = 0; i < arr.length; i++) {
+      let count = 0;
+      for (let j = 0; j < arr.length; j++) {
+        if (arr[i] === arr[j]) {
+          count++;
+        }
+      }
+      if (count > maxCount) {
+        maxCount = count;
+      }
+    }
+    return maxCount;
+  }
+
+  const containMoreOfSame1 = compareArrays(guessWord);
+  const containMoreOfSame2 = compareArrays(finalWord);
+
+  //pushing objects to array with temorarly value
   for (let i = 0; i < guessWord.length; i++) {
     let newObj = {};
 
     newObj[guessWord[i]] = "correct";
-    arr.push(newObj);
+    letterArr.push(newObj);
   }
 
-  //variables to see if arrays have more of same letters then the other
-  const containMoreOfSame1 = Math.max(
-    ...guessWord.map((x) => guessWord.filter((y) => y === x).length)
-  );
-  const containMoreOfSame2 = Math.max(
-    ...finalWord.map((x) => finalWord.filter((y) => y === x).length)
-  );
-
-  arr.forEach((obj, index) => {
+  letterArr.forEach((obj, index) => {
     const letter = Object.keys(obj)[0];
 
     if (incorrectValues.includes(letter)) {
@@ -46,24 +59,21 @@ export function algorithmA(wordFromUser, correctWord) {
       if (finalWord === guessWord) {
         obj[letter] = "correct";
       }
-      return;
     }
-
-    if (finalWord.includes(letter) && finalWord.indexOf(letter) !== index) {
-      obj[letter] = "misplaced";
-      if (containMoreOfSame1 > containMoreOfSame2) {
+    if (guessWord === finalWord) {
+      obj[letter] = "correct";
+    } else if (finalWord.includes(letter)) {
+      if (finalWord.indexOf(letter) === index) {
+        obj[letter] = "correct";
+      } else if (containMoreOfSame1 > containMoreOfSame2) {
         obj[letter] = "incorrect";
       } else {
         obj[letter] = "misplaced";
       }
-    } else if (
-      finalWord.includes(letter) &&
-      finalWord.indexOf(letter) == index
-    ) {
-      obj[letter] = "correct";
     }
   });
-  console.log(arr);
+  console.log(letterArr);
 
-  return arr;
+  return letterArr;
 }
+algorithmA("harry", "harry");
