@@ -1,38 +1,41 @@
-function algorithmA(wordFromUser, correctWord) {
+export function algorithmA(wordFromUser, randomWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
-  let finalWord = correctWord.toUpperCase().split("");
-  if (guessWord.length != finalWord.length) {
+  let correctWord = randomWord.toUpperCase().split("");
+
+  //don't execute function if guessword isn't same length as correctWord
+  if (guessWord.length != correctWord.length) {
     return false;
   }
 
+  //array variables
   let letterArr = [];
   let incorrectArr = [];
 
-  //function to get letters that dont match
+  //function to get letters that don't match
   function notSameLetters() {
-    let incorrect;
-
     for (let i = 0; i < guessWord.length; i++) {
-      if (!finalWord.includes(guessWord[i])) {
+      if (!correctWord.includes(guessWord[i])) {
         incorrectArr.push(guessWord[i]);
       }
     }
-    incorrect = incorrectArr.map((letters) => letters);
 
-    return incorrect;
+    return incorrectArr;
   }
+
+  //setting a variable to the letters that aren't present in the correctWord
   const incorrectValues = notSameLetters();
 
   //function to decide if guessWord has on more of a letter than in finalWord
-  function compareArrays(arr) {
+  function compareArrays(array) {
     let maxCount = 0;
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < array.length; i++) {
       let count = 0;
-      for (let j = 0; j < arr.length; j++) {
-        if (arr[i] === arr[j]) {
+      for (let j = 0; j < array.length; j++) {
+        if (array[i] === array[j]) {
           count++;
         }
       }
+
       if (count > maxCount) {
         maxCount = count;
       }
@@ -40,35 +43,37 @@ function algorithmA(wordFromUser, correctWord) {
     return maxCount;
   }
 
+  //variables to be compare to eachother if letter appear more the the correctWord
   const containMoreOfSame1 = compareArrays(guessWord);
-  const containMoreOfSame2 = compareArrays(finalWord);
+  const containMoreOfSame2 = compareArrays(correctWord);
 
   //pushing objects to array with temorarly value
   for (let i = 0; i < guessWord.length; i++) {
-    let newObj = {};
+    let obj = {};
 
-    newObj[guessWord[i]] = "correct";
-    letterArr.push(newObj);
+    obj[guessWord[i]] = "correct";
+    letterArr.push(obj);
   }
 
-  letterArr.forEach((obj, index) => {
-    const letter = Object.keys(obj)[0];
+  //loopning through the keys of the object and setting the vaues to these keys
+  letterArr.forEach((objParameter, index) => {
+    const letter = Object.keys(objParameter)[0];
 
     if (incorrectValues.includes(letter)) {
-      obj[letter] = "incorrect";
-      if (finalWord === guessWord) {
-        obj[letter] = "correct";
+      objParameter[letter] = "incorrect";
+      if (correctWord === guessWord) {
+        objParameter[letter] = "correct";
       }
     }
-    if (guessWord.join("") === finalWord.join("")) {
-      obj[letter] = "correct";
-    } else if (finalWord.includes(letter)) {
-      if (finalWord.indexOf(letter) === index) {
-        obj[letter] = "correct";
+    if (guessWord.join("") === correctWord.join("")) {
+      objParameter[letter] = "correct";
+    } else if (correctWord.includes(letter)) {
+      if (correctWord.indexOf(letter) === index) {
+        objParameter[letter] = "correct";
       } else if (containMoreOfSame1 > containMoreOfSame2) {
-        obj[letter] = "incorrect";
+        objParameter[letter] = "incorrect";
       } else {
-        obj[letter] = "misplaced";
+        objParameter[letter] = "misplaced";
       }
     }
   });
@@ -77,4 +82,3 @@ function algorithmA(wordFromUser, correctWord) {
 
   return letterArr;
 }
-algorithmA("harry", "harry");
