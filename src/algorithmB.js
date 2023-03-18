@@ -31,7 +31,6 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
 
   //if user have choosen to not include word with letter appearing more than once
   excludeDuplicatedLetters === true ? removeDuplicatedLetters() : null;
-  console.log(category);
 
   //remove words that don't match the length of the word
   for (let i = 0; i < category.length; i++) {
@@ -42,10 +41,19 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
 
   //variable tha contain the random word
   //based on the parameter from the user
-  const randomWord =
+  let randomWord =
     randomWordArr[Math.floor(Math.random() * randomWordArr.length)];
 
-  console.log(randomWordArr);
+  let wordBeenShowed = [];
+
+  wordBeenShowed.push(randomWord);
+
+  //removes the values that already have been generated
+  let hej = randomWordArr.filter((word) => !wordBeenShowed.includes(word));
+
+  randomWordArr = randomWordArr.filter((word) => {
+    hej.includes(word);
+  });
 
   //error message in no words match the specific
   randomWord === undefined
@@ -54,4 +62,4 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
 
   return randomWord;
 }
-console.log(algorithmB(foodList, 7, true));
+console.log(algorithmB(wordsArr, 90, false));
