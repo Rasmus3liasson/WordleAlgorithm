@@ -6,41 +6,52 @@ const workList =
   "Gatsopare Skomakare Skådespelerska Idrottare Advokat Snickare Servitör Entreprenör Pilot Brandman".split(
     " "
   );
-let wordsArr = [];
-let duplicatedLetter = [];
 
-export function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
+let wordsArr = [];
+function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
+  let duplicatedLetter = [];
+  let randomWordArr = [];
+
+  // when user haven't specified a certin category
+  //the list will contain all the words
   if (category == wordsArr) {
-    wordsArr.push(...foodList);
-    wordsArr.push(...colorList);
-    wordsArr.push(...workList);
+    wordsArr.push(...foodList, ...colorList, ...workList);
   }
 
-  let askedVauleArr = [];
-
+  //function to remove words that have letters appear more then once
+  //using .size to make function work since it only contains unique values
   function removeDuplicatedLetters() {
     for (let i = 0; i < category.length; i++) {
       duplicatedLetter = new Set(category[i].toLowerCase());
-      if (duplicatedLetter.length != category[i].length) {
+      if (duplicatedLetter.size != category[i].length) {
         category.splice(i, 1);
       }
     }
   }
-  if (excludeDuplicatedLetters === "JA") {
-    removeDuplicatedLetters();
-  }
 
+  //if user have choosen to not include word with letter appearing more than once
+  excludeDuplicatedLetters === true ? removeDuplicatedLetters() : null;
+  console.log(category);
+
+  //remove words that don't match the length of the word
   for (let i = 0; i < category.length; i++) {
     if (category[i].length <= lengthOfWord) {
-      askedVauleArr.push(category[i]);
+      randomWordArr.push(category[i]);
     }
   }
 
+  //variable tha contain the random word
+  //based on the parameter from the user
   const randomWord =
-    askedVauleArr[Math.floor(Math.random() * askedVauleArr.length)];
+    randomWordArr[Math.floor(Math.random() * randomWordArr.length)];
 
-  if (randomWord === undefined) {
-    console.error("Fanns tyvärr inget ord med dessa parametrar");
-  }
+  console.log(randomWordArr);
+
+  //error message in no words match the specific
+  randomWord === undefined
+    ? console.error("Fanns tyvärr inget ord med dessa parametrar")
+    : false;
+
   return randomWord;
 }
+console.log(algorithmB(foodList, 7, true));
