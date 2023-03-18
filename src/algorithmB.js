@@ -8,7 +8,7 @@ const workList =
   );
 
 let wordsArr = [];
-export function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
+function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   let duplicatedLetter = [];
   let randomWordArr = [];
 
@@ -47,6 +47,7 @@ export function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   let wordBeenShowed = [];
 
   wordBeenShowed.push(randomWord);
+  console.log(wordBeenShowed);
 
   //removes the values that already have been generated
   let hej = randomWordArr.filter((word) => !wordBeenShowed.includes(word));
@@ -57,8 +58,10 @@ export function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
 
   //error message in no words match the specific
   randomWord === undefined
-    ? console.error("Fanns tyvärr inget ord med dessa parametrar")
+    ? (randomWord = "Inget ord fanns tillgängligt")
     : false;
 
+  console.log(randomWord);
   return randomWord;
 }
+algorithmB(foodList, 20);
