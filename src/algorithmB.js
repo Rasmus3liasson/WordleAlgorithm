@@ -8,23 +8,27 @@ const workList =
   );
 
 let wordsArr = [];
-function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
+export function algorithmB(
+  categoryArr,
+  lengthOfWord,
+  excludeDuplicatedLetters
+) {
   let duplicatedLetter = [];
   let randomWordArr = [];
 
   // when user haven't specified a certin category
   //the list will contain all the words
-  if (category == wordsArr) {
+  if (categoryArr == wordsArr) {
     wordsArr.push(...foodList, ...colorList, ...workList);
   }
 
   //function to remove words that have letters appear more then once
   //using .size to make function work since it only contains unique values
   function removeDuplicatedLetters() {
-    for (let i = 0; i < category.length; i++) {
-      duplicatedLetter = new Set(category[i].toLowerCase());
-      if (duplicatedLetter.size != category[i].length) {
-        category.splice(i, 1);
+    for (let i = 0; i < categoryArr.length; i++) {
+      duplicatedLetter = new Set(categoryArr[i].toLowerCase());
+      if (duplicatedLetter.size != categoryArr[i].length) {
+        categoryArr.splice(i, 1);
       }
     }
   }
@@ -33,9 +37,9 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   excludeDuplicatedLetters === true ? removeDuplicatedLetters() : null;
 
   //remove words that don't match the length of the word
-  for (let i = 0; i < category.length; i++) {
-    if (category[i].length <= lengthOfWord) {
-      randomWordArr.push(category[i]);
+  for (let i = 0; i < categoryArr.length; i++) {
+    if (categoryArr[i].length <= lengthOfWord) {
+      randomWordArr.push(categoryArr[i]);
     }
   }
 
@@ -49,7 +53,5 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
     ? (randomWord = "Inget ord fanns tillgängligt")
     : false;
 
-  console.log(randomWord);
   return randomWord;
 }
-algorithmB(wordsArr, 20);
