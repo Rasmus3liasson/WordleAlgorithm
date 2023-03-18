@@ -44,18 +44,6 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   let randomWord =
     randomWordArr[Math.floor(Math.random() * randomWordArr.length)];
 
-  let wordBeenShowed = [];
-
-  wordBeenShowed.push(randomWord);
-  console.log(wordBeenShowed);
-
-  //removes the values that already have been generated
-  let hej = randomWordArr.filter((word) => !wordBeenShowed.includes(word));
-
-  randomWordArr = randomWordArr.filter((word) => {
-    hej.includes(word);
-  });
-
   //error message in no words match the specific
   randomWord === undefined
     ? (randomWord = "Inget ord fanns tillgängligt")
@@ -64,4 +52,4 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   console.log(randomWord);
   return randomWord;
 }
-algorithmB(foodList, 20);
+algorithmB(wordsArr, 20);
