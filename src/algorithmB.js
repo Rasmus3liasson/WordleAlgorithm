@@ -8,7 +8,7 @@ const workList =
   );
 
 let wordsArr = [];
-function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
+export function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
   let duplicatedLetter = [];
   let randomWordArr = [];
 
@@ -62,4 +62,3 @@ function algorithmB(category, lengthOfWord, excludeDuplicatedLetters) {
 
   return randomWord;
 }
-console.log(algorithmB(wordsArr, 90, false));
