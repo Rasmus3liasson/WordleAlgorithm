@@ -1,8 +1,17 @@
 import { algorithmA } from "../src/algorithmA.js";
 import { describe, expect, test } from "@jest/globals";
 
+/* This is a unit-test to test the function that should handle the word that user
+ have guessed to be in the correct word
+ Since our function hasen't been implemented with another component at this moment,
+ a unit-test is the way I can test that the function works as it should
+ 
+ Below are test that i believe should cover all possible outcome depending of what
+ the word from the user is.
+ */
+
 describe("algorithmA()", () => {
-  test("should return correct, misplaced, and incorrect letters correct", () => {
+  test("should return correct, misplaced, and incorrect with the word given by the user", () => {
     const wordFromUser = "sloer";
     const correctWord = "solen";
 
@@ -56,6 +65,33 @@ describe("algorithmA()", () => {
       { A: "correct" },
       { J: "incorrect" },
       { S: "incorrect" },
+    ]);
+  });
+  test("keys should have correct if both words match", () => {
+    const wordFromUser = "Pizza";
+    const correctWord = "pizza";
+
+    const result = algorithmA(wordFromUser, correctWord);
+
+    expect(result).toEqual([
+      { P: "correct" },
+      { I: "correct" },
+      { Z: "correct" },
+      { Z: "correct" },
+      { A: "correct" },
+    ]);
+  });
+  test("keys should have misplaced as value if letters are placed at the wrong spot but are included in the correct word", () => {
+    const wordFromUser = "irma";
+    const correctWord = "tarm";
+
+    const result = algorithmA(wordFromUser, correctWord);
+
+    expect(result).toEqual([
+      { I: "incorrect" },
+      { R: "misplaced" },
+      { M: "misplaced" },
+      { A: "misplaced" },
     ]);
   });
   test("should not execute function when the string length don't match", () => {
