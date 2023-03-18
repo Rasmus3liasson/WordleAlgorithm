@@ -24,6 +24,19 @@ describe("checkGuess(wordFromUser, randomWord)", () => {
       { R: "incorrect" },
     ]);
   });
+  test("should return correct, misplaced, and incorrect with the word given by the user", () => {
+    const wordFromUser = "hallå";
+    const correctWord = "cykla";
+
+    const result = checkGuess(wordFromUser, correctWord);
+    expect(result).toEqual([
+      { H: "incorrect" },
+      { A: "misplaced" },
+      { L: "incorrect" },
+      { L: "correct" },
+      { Å: "incorrect" },
+    ]);
+  });
 
   test("should show 'incorrect' if the guessedWord has letters and one of them is correct and the other doesn't exist", () => {
     const wordFromUser = "solln";
