@@ -1,4 +1,4 @@
-import { algorithmA } from "../src/algorithmA.js";
+import { checkGuess } from "../src/checkGuess";
 import { describe, expect, test } from "@jest/globals";
 
 /* This is a unit-test to test the function that should handle the word that user
@@ -10,12 +10,12 @@ import { describe, expect, test } from "@jest/globals";
  the word from the user is.
  */
 
-describe("algorithmA()", () => {
+describe("checkGuess(wordFromUser, randomWord)", () => {
   test("should return correct, misplaced, and incorrect with the word given by the user", () => {
     const wordFromUser = "sloer";
     const correctWord = "solen";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
     expect(result).toEqual([
       { S: "correct" },
       { L: "misplaced" },
@@ -29,7 +29,7 @@ describe("algorithmA()", () => {
     const wordFromUser = "solln";
     const correctWord = "solen";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
 
     expect(result).toEqual([
       { S: "correct" },
@@ -44,7 +44,7 @@ describe("algorithmA()", () => {
     const wordFromUser = "mAjS";
     const correctWord = "MaJs";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
 
     expect(result).toEqual([
       { M: "correct" },
@@ -58,7 +58,7 @@ describe("algorithmA()", () => {
     const wordFromUser = "majs";
     const correctWord = "katt";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
 
     expect(result).toEqual([
       { M: "incorrect" },
@@ -71,7 +71,7 @@ describe("algorithmA()", () => {
     const wordFromUser = "Pizza";
     const correctWord = "pizza";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
 
     expect(result).toEqual([
       { P: "correct" },
@@ -85,7 +85,7 @@ describe("algorithmA()", () => {
     const wordFromUser = "irma";
     const correctWord = "tarm";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
 
     expect(result).toEqual([
       { I: "incorrect" },
@@ -98,7 +98,7 @@ describe("algorithmA()", () => {
     const wordFromUser = "kalas";
     const correctWord = "kallas";
 
-    const result = algorithmA(wordFromUser, correctWord);
+    const result = checkGuess(wordFromUser, correctWord);
 
     expect(result).toBeFalsy();
   });

@@ -1,4 +1,4 @@
-import { algorithmB } from "../src/algorithmB.js";
+import { generateRandomWord } from "../src/randomWord";
 import { describe, expect, test } from "@jest/globals";
 
 /* This is a unit-test to test the function that should return a a random word from a
@@ -16,22 +16,22 @@ describe("algorithmB(category, lengthOfWord, excludeDuplicatedLetters)", () => {
   const wordsArray = ["Rasmus", "Eliasson", "hej", "martin", "kola", "sallad"];
 
   test("should return random word from array", () => {
-    const result = algorithmB(wordsArray, 20);
+    const result = generateRandomWord(wordsArray, 20);
     expect(wordsArray).toContain(result);
   });
 
   test("should use 'lengtOfWord' as parameter for determine length of the random word", () => {
-    const result = algorithmB(wordsArray, 3);
+    const result = generateRandomWord(wordsArray, 3);
     expect(result).toEqual("hej");
     expect(result).not.toEqual("kola");
   });
 
   test("should use parameter 'excludeDuplicatedLetters' to exclude letters that contain letters more than once", () => {
-    const result = algorithmB(wordsArray, 20, true);
+    const result = generateRandomWord(wordsArray, 20, true);
     expect(result).not.toEqual("sallad");
   });
   test("should return a error message if no words are found", () => {
-    const result = algorithmB(wordsArray, 1, true);
+    const result = generateRandomWord(wordsArray, 1, true);
     expect(result).toEqual("Inget ord fanns tillgängligt");
   });
 });

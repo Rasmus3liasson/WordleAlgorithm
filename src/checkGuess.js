@@ -1,4 +1,4 @@
-export function algorithmA(wordFromUser, randomWord) {
+export function checkGuess(wordFromUser, randomWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let correctWord = randomWord.toUpperCase().split("");
 

@@ -8,7 +8,7 @@ const workList =
   );
 
 let wordsArr = [];
-export function algorithmB(
+export function generateRandomWord(
   categoryArr,
   lengthOfWord,
   excludeDuplicatedLetters
