@@ -1,8 +1,8 @@
-import { algorithmA } from "./algorithmA";
+import { algorithmA } from "../src/algorithmA.js";
 import { describe, expect, test, jest } from "@jest/globals";
 
 describe("algorithmA()", () => {
-  it("should return correct, misplaced, and incorrect letters", () => {
+  test("should return correct, misplaced, and incorrect letters", () => {
     const wordFromUser = "sloer";
     const correctWord = "solen";
 
@@ -16,7 +16,7 @@ describe("algorithmA()", () => {
     ]);
   });
 
-  it("should show 'incorrect' if the guessedWord has on of them is correct and the other doesn't exist", () => {
+  test("should show 'incorrect' if the guessedWord has on of them is correct and the other doesn't exist", () => {
     const wordFromUser = "solln";
     const correctWord = "solen";
 
@@ -31,7 +31,7 @@ describe("algorithmA()", () => {
     ]);
   });
 
-  it("should handle uppercase and lowercase", () => {
+  test("should handle uppercase and lowercase", () => {
     const wordFromUser = "mAjS";
     const correctWord = "MaJs";
 
@@ -45,7 +45,7 @@ describe("algorithmA()", () => {
     ]);
   });
 
-  it("should handle letter to 'incorrect' if no match found", () => {
+  test("should handle letter to 'incorrect' if no match found", () => {
     const wordFromUser = "majs";
     const correctWord = "katt";
 

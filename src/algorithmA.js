@@ -1,4 +1,4 @@
-export function algorithmA(wordFromUser, correctWord) {
+function algorithmA(wordFromUser, correctWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let finalWord = correctWord.toUpperCase().split("");
   if (guessWord.length != finalWord.length) {
@@ -60,7 +60,7 @@ export function algorithmA(wordFromUser, correctWord) {
         obj[letter] = "correct";
       }
     }
-    if (guessWord === finalWord) {
+    if (guessWord.join("") === finalWord.join("")) {
       obj[letter] = "correct";
     } else if (finalWord.includes(letter)) {
       if (finalWord.indexOf(letter) === index) {
@@ -72,6 +72,7 @@ export function algorithmA(wordFromUser, correctWord) {
       }
     }
   });
+
   console.log(letterArr);
 
   return letterArr;
