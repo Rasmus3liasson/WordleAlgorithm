@@ -1,8 +1,8 @@
 import { algorithmA } from "../src/algorithmA.js";
-import { describe, expect, test, jest } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 
 describe("algorithmA()", () => {
-  test("should return correct, misplaced, and incorrect letters", () => {
+  test("should return correct, misplaced, and incorrect letters correct", () => {
     const wordFromUser = "sloer";
     const correctWord = "solen";
 
@@ -16,7 +16,7 @@ describe("algorithmA()", () => {
     ]);
   });
 
-  test("should show 'incorrect' if the guessedWord has on of them is correct and the other doesn't exist", () => {
+  test("should show 'incorrect' if the guessedWord has letters and one of them is correct and the other doesn't exist", () => {
     const wordFromUser = "solln";
     const correctWord = "solen";
 
@@ -57,5 +57,13 @@ describe("algorithmA()", () => {
       { J: "incorrect" },
       { S: "incorrect" },
     ]);
+  });
+  test("should not execute function when the string length don't match", () => {
+    const wordFromUser = "kalas";
+    const correctWord = "kallas";
+
+    const result = algorithmA(wordFromUser, correctWord);
+
+    expect(result).toBeFalsy();
   });
 });

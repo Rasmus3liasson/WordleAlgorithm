@@ -2,11 +2,6 @@ export function algorithmA(wordFromUser, randomWord) {
   let guessWord = wordFromUser.toUpperCase().split("");
   let correctWord = randomWord.toUpperCase().split("");
 
-  //don't execute function if guessword isn't same length as correctWord
-  if (guessWord.length != correctWord.length) {
-    return false;
-  }
-
   //array variables
   let letterArr = [];
   let incorrectArr = [];
@@ -23,24 +18,25 @@ export function algorithmA(wordFromUser, randomWord) {
   }
 
   //setting a variable to the letters that aren't present in the correctWord
-  const incorrectValues = notSameLetters();
+  const incorrectLetters = notSameLetters();
 
-  //function to decide if guessWord has on more of a letter than in finalWord
+  //function to decide if guessWord has on more of a letter than in correctWord
   function compareArrays(array) {
-    let maxCount = 0;
+    let biggerNumber = 0;
+    let number = 0;
+
     for (let i = 0; i < array.length; i++) {
-      let count = 0;
       for (let j = 0; j < array.length; j++) {
         if (array[i] === array[j]) {
-          count++;
+          number++;
         }
       }
 
-      if (count > maxCount) {
-        maxCount = count;
+      if (number > biggerNumber) {
+        biggerNumber = number;
       }
     }
-    return maxCount;
+    return biggerNumber;
   }
 
   //variables to be compare to eachother if letter appear more the the correctWord
@@ -59,7 +55,7 @@ export function algorithmA(wordFromUser, randomWord) {
   letterArr.forEach((objParameter, index) => {
     const letter = Object.keys(objParameter)[0];
 
-    if (incorrectValues.includes(letter)) {
+    if (incorrectLetters.includes(letter)) {
       objParameter[letter] = "incorrect";
       if (correctWord === guessWord) {
         objParameter[letter] = "correct";
@@ -77,6 +73,11 @@ export function algorithmA(wordFromUser, randomWord) {
       }
     }
   });
+
+  //don't execute function if guessword isn't same length as correctWord
+  if (guessWord.length != correctWord.length) {
+    return false;
+  }
 
   console.log(letterArr);
 
