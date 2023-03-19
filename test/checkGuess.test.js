@@ -24,7 +24,7 @@ describe("checkGuess(wordFromUser, randomWord)", () => {
       { R: "incorrect" },
     ]);
   });
-  test("should return correct, misplaced, and incorrect with the word given by the user", () => {
+  test("should return correct, misplaced, and incorrect, test with example from exercise", () => {
     const wordFromUser = "hallå";
     const correctWord = "cykla";
 
