@@ -17,6 +17,7 @@ export function checkGuess(wordFromUser, randomWord) {
 
     return sameIndexArr;
   }
+  //setting a variable to the letters that match and is/are same index as correctWord
   const sameIndexLetters = sameIndex();
 
   //function to get letters that don't match
@@ -55,7 +56,10 @@ export function checkGuess(wordFromUser, randomWord) {
       correctWord.filter((frequentLetter) => frequentLetter === letter).length
     ) {
       objParameter[letter] = "incorrect";
-    } else if (sameIndexLetters.includes(letter)) {
+    } else if (
+      sameIndexLetters.includes(letter) &&
+      sameIndexLetters.indexOf(letter) != index
+    ) {
       objParameter[letter] = "correct";
     } else {
       objParameter[letter] = "misplaced";
