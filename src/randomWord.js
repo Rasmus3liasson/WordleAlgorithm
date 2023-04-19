@@ -13,7 +13,6 @@ export function generateRandomWord(
   lengthOfWord,
   excludeDuplicatedLetters
 ) {
-  let duplicatedLetter = [];
   let randomWordArr = [];
 
   // when user haven't specified a certin category
@@ -25,12 +24,10 @@ export function generateRandomWord(
   //function to remove words that have letters appear more then once
   //using .size to make function work since it only contains unique values
   function removeDuplicatedLetters() {
-    for (let i = 0; i < categoryArr.length; i++) {
-      duplicatedLetter = new Set(categoryArr[i].toLowerCase());
-      if (duplicatedLetter.size != categoryArr[i].length) {
-        categoryArr.splice(i, 1);
-      }
-    }
+    categoryArr = categoryArr.filter((uniqueLetter) => {
+      const uniqueLetters = new Set(uniqueLetter);
+      return uniqueLetters.size === uniqueLetter.length;
+    });
   }
 
   //if user have choosen to not include word with letter appearing more than once
